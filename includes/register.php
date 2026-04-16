@@ -28,7 +28,7 @@ if(isset($_SESSION["registerError"])) {
 
     <h1>Register:</h1>
 <div class="form">
-    <form action="register2.php" method="POST">
+    <form action="../database/register2.php" method="POST">
         <label for="username">Username</label>
         <input type="text" name="username">
         <label for="password">Password</label>

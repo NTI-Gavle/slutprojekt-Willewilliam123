@@ -38,6 +38,6 @@ $stmt = $dbconn->prepare($sql);
 $data = array($user, password_hash($pass, PASSWORD_DEFAULT));
 $stmt->execute($data);
 
-header("Location: login.php")
+header("Location: ../includes/login.php")
 
 ?>
