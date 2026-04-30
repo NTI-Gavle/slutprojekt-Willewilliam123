@@ -16,9 +16,8 @@ include "Botstrap.php"
     <title>Document</title>
 </head>
 <body>
-    
+    <?php
+        include "nav.php"
+    ?>
 </body>
 </html>
-<?php
-include "nav.php"
-?>
