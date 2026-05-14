@@ -1,67 +1,40 @@
-/* Header */
-.site-header {
-    background-color: #333;
-    color: #fff;
-    padding: 15px 0;
+:root{
+    --psky-lavender: #9067C6;
+    --psky-cherry:  #FFB5C2;
+    --psky-red: #D81159;
+    --psky-blue: #80A4ED;
 }
 
-.header-container {
-    max-width: 1000px;
-    margin: 0 auto;
+
+.nav-link {
+    display:flex;
+    align-items:center;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+.nav-link :hover{
+    background-color: indigo;
+    transform: translateY(-1px);
+    color: var(--psky-red);
+}
+
+.nav-icon {
+  width: 26px;
+  height: 26px;
+  fill: white;
+  color: white;
+  display: block;
+}
+
+li :hover {
+    background-color: indigo; 
+}
+
+.post_button {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.site-title a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5em;
-}
-
-/* Navigation */
-.site-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
-}
-
-.site-nav a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.site-nav a:hover {
-    color: #FFD700; /* Optional hover effect */
-}
-
-/* Main content */
-.main-content {
-    max-width: 1000px;
-    margin: 20px auto;
-}
-
-/* Footer */
-.site-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #f0f0f0;
-    margin-top: 40px;
-}
-
-.site-footer a {
-    color: #333;
-    text-decoration: none;
-    margin: 0 5px;
-}
-
-.site-footer a:hover {
-    text-decoration: underline;
-}
-.testhome{
-    width: 100px;
-    height: 100px;
-    background-color: rebeccapurple;
+    justify-content: center;
+    background-color: var(--psky-blue);
+    margin-top:80%;
+    margin-left:10%;
 }
