@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 require_once "db.php";
 
@@ -26,7 +28,9 @@ foreach($posts as $post):
 
 <article class="post-card">
 
-    <div class="post-top">
+    <a href="../includes/post.php?postId=<?= $post["PostId"] ?>" class="post-clickable">
+
+            <div class="post-top">
 
         <img
             src="<?= htmlspecialchars($post["AvatarUrl"] ?: 'https://i.pravatar.cc/50') ?>"
@@ -50,7 +54,17 @@ foreach($posts as $post):
         <?= htmlspecialchars($post["PostText"]) ?>
     </p>
 
+    </a>
+
     <div class="post-actions">
+        
+        <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["UserId"] == $post["UserId"]): ?>
+
+            <button type="button" hx-post="../database/delete_post.php" hx-confirm="Delete this post?" hx-vals='{"postId": "<?= $post["PostId"] ?>"}' hx-target="#discover-feed" hx-swap="innerHTML">
+                Delete
+            </button>
+
+        <?php endif; ?>
 
         <button>Like</button>
 

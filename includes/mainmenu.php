@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION["user"])) {
     header("Location: login.php");
@@ -21,8 +23,7 @@ if (!isset($_SESSION["user"])) {
 <body>
     <div class="app-layout">
 
-
-    <aside class="sidebar">
+    <aside>
     <?php
     include "nav.php"
     ?>
@@ -33,26 +34,12 @@ if (!isset($_SESSION["user"])) {
         <div class="discover-search">
             <input type="text" placeholder="Search for posts or users" />
         </div>
-
-        <section class="discover-section">
-
-            <h2>Suggested Users</h2>
-
-        </section>
-
-        <section class="discover-section">
-
-            <h2>Discover Feed</h2>
-
-        </section>
         
         <section class="create-post-card">
 
             <form hx-post="../database/create_post.php" hx-target="#discover-feed" hx-swap="innerHTML">
 
-                <textarea name="postText" placeholder="What's happening?" required>
-
-                </textarea>
+                <textarea name="postText" placeholder="What's happening?" required></textarea>
 
                 <button type="submit">
                      Post
@@ -67,9 +54,7 @@ if (!isset($_SESSION["user"])) {
                 <p>Loading posts...</p>
 
             </section>
-
     </main>
 </div>
 </body>
-
 </html>

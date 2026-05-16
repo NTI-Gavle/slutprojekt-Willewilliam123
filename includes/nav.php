@@ -9,7 +9,7 @@
 </head>
 </html>
 <body class="bg-purple-950 navbar app-layout">
-    <nav class="h-screen w-65 border-r border-purple-900">  
+    <nav class="h-screen w-65 sidebar">  
         <ul class="grid grid-cols-1 grid-rows-6">
             <li class="active: >
                 <a href="mainmenu.php" class="nav-link">
