@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../public/css/color.css">
     <link rel="stylesheet" href="../public/css/styles.css">
     <?php include "../includes/skeleton/head.php" ?>
 </head>
 </html>
-<body class="bg-purple-950">
+<body class="bg-purple-950 navbar app-layout">
     <nav class="h-screen w-65 border-r border-purple-900">  
         <ul class="grid grid-cols-1 grid-rows-6">
-            <li>
+            <li class="active: >
                 <a href="mainmenu.php" class="nav-link">
 
                     <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -86,12 +85,12 @@
             </li>
         </ul>
 
-        <div class="h-screen center">
+        <div class="h-screen center button">
             <button class="post_button mb-10 p-3 rounded-2xl w-50 text-rose-200">
                 <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M17.59 3.59a2 2 0 0 1 2.82 2.82l-11 11L5 18l.59-4.41l11-11zM4 20h16v2H4z"/>
                 </svg>
-                
+
                 <span>
                     New Post
                 </span>

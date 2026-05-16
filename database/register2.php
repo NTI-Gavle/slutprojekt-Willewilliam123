@@ -2,7 +2,7 @@
 
 session_start();
 
-include("../database/db.php");
+include("db.php");
 
 if(isset($_POST["username"])){
     $user = $_POST["username"];
@@ -13,19 +13,12 @@ if(isset($_POST["password"])){
 }
 
 if(!(isset($pass) && isset($user))){    
-    header("Location: login.php");
-}
-$email = "john.doe@example.com";
-
-if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  echo("$email is a valid email address");
-} else {
-  echo("$email is not a valid email address");
+    header("Location: ../includes/login.php");
+    exit();
 }
 $sql = "SELECT * FROM users WHERE username = ?";
 $stmt = $dbconn->prepare($sql);
 
-// parameters in array, if empty we could skip the $data-variable
 $data = array($user);
 $stmt->execute($data);
 
@@ -37,10 +30,9 @@ if(!empty($res)) {
     die();
 }
 
-$sql = "INSERT INTO users (Username,Password) VALUES (?, ?)";
+$sql = "INSERT INTO users (Username,PasswordHash) VALUES (?, ?)";
 $stmt = $dbconn->prepare($sql);
 
-// parameters in array, if empty we could skip the $data-variable
 $data = array($user, password_hash($pass, PASSWORD_DEFAULT));
 $stmt->execute($data);
 

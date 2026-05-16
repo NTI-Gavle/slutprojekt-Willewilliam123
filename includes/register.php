@@ -32,7 +32,6 @@ if(isset($_SESSION["registerError"])) {
     <form action="../database/register2.php" method="POST" class="flex col">
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
-        <input type="text" name="email" placeholder="john.doe@example.com">
 
         <button type="submit">Sign in</button>
     </form>

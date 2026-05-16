@@ -5,18 +5,23 @@
     --psky-blue: #80A4ED;
 }
 
+body {
+    margin: 0;
+    background: #3d0066;
+    color: white;
+    font-family: Inter, sans-serif;
+}
+
+.sidebar {
+    top:0;
+    position: stiky;
+}
 
 .nav-link {
     display:flex;
     align-items:center;
     gap: 1rem;
     padding: 0.8rem 1rem;
-    transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
-}
-.nav-link :hover{
-    background-color: indigo;
-    transform: translateY(-1px);
-    color: var(--psky-red);
 }
 
 .nav-icon {
@@ -29,6 +34,7 @@
 
 li :hover {
     background-color: indigo; 
+    color: var(--psky-red);
 }
 
 .post_button {
@@ -37,4 +43,182 @@ li :hover {
     background-color: var(--psky-blue);
     margin-top:80%;
     margin-left:10%;
+}
+
+.post_button :hover {
+    color: var(--psky-red);
+}
+
+.button :hover {
+    background-color: rgb(100, 200, 225);
+}
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.discover-page {
+    flex:1;
+    max-width: 700px;
+    padding: 24px;
+    border-left: 1px solid rgba(255,255,255,0.08);
+    margin: 0 auto;
+}
+
+.discover-search {
+    margin-bottom: 28px;
+}
+
+.discover-search input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 999px;
+    border: none;
+    outline: none;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    font-size: 15px;
+}
+
+.discover-section {
+    margin-bottom: 40px;
+}
+
+.discover-section h2 {
+    margin-bottom: 18px;
+    font-size: 22px;
+}
+
+.trend-card {
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.06);
+    margin-bottom: 12px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.trend-card:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.trend-card span {
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.trend-card p {
+    opacity: 0.7;
+    margin-top: 6px;
+}
+
+.user-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.06);
+    margin-bottom: 12px;
+}
+
+.user-card img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+}
+
+.user-card button {
+    margin-left: auto;
+    border: none;
+    background: white;
+    color: black;
+    border-radius: 999px;
+    padding: 10px 18px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.post-card {
+    padding: 18px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    margin-bottom: 18px;
+}
+
+.post-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.post-top img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.post-top span {
+    opacity: 0.7;
+    font-size: 14px;
+}
+
+.post-content {
+    margin: 16px 0;
+    line-height: 1.6;
+}
+
+.post-actions {
+    display: flex;
+    gap: 14px;
+}
+
+.post-actions button {
+    background: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.post-actions button:hover {
+    opacity: 1;
+}
+.create-post-card {
+    background: rgba(255,255,255,0.06);
+    padding: 18px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+}
+
+.create-post-card textarea {
+    width: 100%;
+    min-height: 120px;
+
+    background: transparent;
+    border: none;
+    outline: none;
+
+    color: white;
+    resize: none;
+
+    font-size: 16px;
+}
+
+.create-post-card button {
+    margin-top: 16px;
+
+    background: white;
+    color: black;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    font-weight: 700;
 }
