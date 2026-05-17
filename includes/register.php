@@ -1,11 +1,12 @@
 <?php
 session_start();
-    $errorMSG = "";
+
+$errorMSG = "";
+
 if(isset($_SESSION["registerError"])) {
     $errorMSG = $_SESSION["registerError"];
     unset($_SESSION["registerError"]);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -13,28 +14,68 @@ if(isset($_SESSION["registerError"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="quiz.css">
+    <title>Register</title>
+
+    <link rel="stylesheet" href="../public/css/styles.css">
+
+    <?php include "../includes/skeleton/head.php" ?>
 </head>
-<body>
 
-    <?php
-    if($errorMSG != "") {
-        echo "<p>" . $errorMSG . "<p>";
+<body class="purple auth-page">
 
-    }
+    <div class="auth-container">
 
-    ?>
+        <div class="auth-card">
 
-    <h1>Register:</h1>¨
+            <h1 class="auth-title">
+                Create Account
+            </h1>
 
-<div class="form">
-    <form action="../database/register2.php" method="POST" class="flex col">
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
+            <p class="auth-subtitle">
+                Join the platform
+            </p>
 
-        <button type="submit">Sign in</button>
-    </form>
-</div>
+            <?php if($errorMSG != ""): ?>
+
+                <div class="auth-error">
+                    <?= htmlspecialchars($errorMSG) ?>
+                </div>
+
+            <?php endif; ?>
+
+            <form action="../database/register2.php" method="POST" class="auth-form">
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    required
+                >
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                >
+
+                <button type="submit" class="auth-button">
+                    Register
+                </button>
+
+            </form>
+
+            <p class="auth-switch-text">
+                Already have an account?
+            </p>
+
+            <a href="login.php" class="auth-switch-link">
+                Log In
+            </a>
+
+        </div>
+
+    </div>
+
 </body>
 </html>

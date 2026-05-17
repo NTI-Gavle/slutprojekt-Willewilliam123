@@ -41,12 +41,12 @@ if (!$post) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Post</title>
     <link rel="stylesheet" href="../public/css/styles.css">
     <?php include "../includes/skeleton/head.php" ?>
-    <script src="../public/js/profile.js"></script>
+    <script src="../public/js/comments.js"></script>
 </head>
-<body>
+<body class="<?= $_SESSION["user"]["Theme"] ?? 'purple' ?>">
         <div class="app-layout">
             <aside>
                 <?php
@@ -60,15 +60,19 @@ if (!$post) {
 
         <div class="post-top">
 
-            <img
-                src="<?= htmlspecialchars($post["AvatarUrl"] ?: 'https://i.pravatar.cc/50') ?>"
-            >
+            <a href="../includes/profile.php?user=<?= urlencode($post["Username"]) ?>" class="profile-link">
+
+                <img src="<?= htmlspecialchars($post["AvatarUrl"] ?: 'https://i.pravatar.cc/50') ?>">
+
+            </a>
 
             <div>
 
-                <h3>
-                    @<?= htmlspecialchars($post["Username"]) ?>
-                </h3>
+                <a href="../includes/profile.php?user=<?= urlencode($post["Username"]) ?>" class="profile-link">
+                    <h3>
+                        @<?= htmlspecialchars($post["Username"]) ?>
+                    </h3>
+                </a>
 
             </div>
 

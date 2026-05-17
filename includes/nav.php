@@ -1,61 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../public/css/styles.css">
-    <?php include "../includes/skeleton/head.php" ?>
-</head>
-</html>
-<body class="bg-purple-950 navbar app-layout">
-    <nav class="h-screen w-65 sidebar">  
+<div class="bg-purple-950">
+    <nav class="w-65 sidebar">  
         <ul class="grid grid-cols-1 grid-rows-6">
-            <li class="active: >
+            <li class="" >
                 <a href="mainmenu.php" class="nav-link">
 
                     <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M3 10.75L12 3l9 7.75V21a1 1 0 0 1-1 1h-5.5a1 1 0 0 1-1-1v-5.5h-3V21a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10.75z"/>
-                    </svg>
-
-                    <span class="text-decoration-none text-rose-200">
-                        Home
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="search.php" class="nav-link">
-
-                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M10.5 3a7.5 7.5 0 1 1 0 15a7.5 7.5 0 0 1 0-15zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11zm6.4 10.99L21 20.1L19.59 21.5l-4.11-4.11z"/>
-                    </svg>
-
-                    <span class="text-decoration-none text-rose-200">
-                        Search
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="message.php" class="nav-link">
-                
-                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M12 3C6.48 3 2 6.94 2 11.8c0 2.43 1.13 4.63 2.97 6.23L4 22l4.27-2.14c1.14.31 2.38.48 3.73.48c5.52 0 10-3.94 10-8.8S17.52 3 12 3zm-4 10a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3z"/>
-                    </svg>
-                
-                    <span class="text-decoration-none text-rose-200">
-                        Message
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="saved.php" class="nav-link">
-                    
-                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M6 3h12a1 1 0 0 1 1 1v17.5a.5.5 0 0 1-.8.4L12 17.25l-6.2 4.65a.5.5 0 0 1-.8-.4V4a1 1 0 0 1 1-1z"/>
                     </svg>  
 
                     <span class="text-decoration-none text-rose-200">
-                        Saved
+                        Home
                     </span>
                 </a>
             </li>
@@ -85,7 +39,7 @@
             </li>
         </ul>
 
-        <div class="h-screen center button">
+        <div class="center button">
             <button class="post_button mb-10 p-3 rounded-2xl w-50 text-rose-200">
                 <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M17.59 3.59a2 2 0 0 1 2.82 2.82l-11 11L5 18l.59-4.41l11-11zM4 20h16v2H4z"/>
@@ -98,4 +52,3 @@
         </div>
     </nav>
 </div>
-</body>

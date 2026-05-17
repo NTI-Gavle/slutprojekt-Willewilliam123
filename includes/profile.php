@@ -116,13 +116,13 @@ $activity = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="../public/css/styles.css">
     <?php include "../includes/skeleton/head.php" ?>
     <script src="../public/js/profile.js"></script>
     <script src="../public/js/comments.js"></script>
 </head>
-<body>
+<body class="<?= $_SESSION["user"]["Theme"] ?? 'purple' ?>">
 
     <div class="app-layout">
 
@@ -163,6 +163,29 @@ $activity = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <button onclick="toggleEditProfile()">
                         Edit Profile
                     </button>
+
+                    <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["UserId"] == $profile["UserId"]): ?>
+
+    <div class="profile-buttons">
+
+        <button
+            type="button"
+            onclick="toggleEditProfile()"
+            class="edit-profile-button"
+        >
+            Edit Profile
+        </button>
+
+        <a
+            href="../database/logout.php"
+            class="logout-button"
+        >
+            Log Out
+        </a>
+
+    </div>
+
+<?php endif; ?>
         
                 <?php endif; ?>
                 

@@ -59,7 +59,9 @@ $groupedComments = [];
 
 foreach ($comments as $comment) {
 
-    $parentId = $comment["ParentCommentId"];
+    $parentId = $comment["ParentCommentId"] !== null
+        ? (int)$comment["ParentCommentId"]
+        : null;
 
     $groupedComments[$parentId][] = $comment;
 
@@ -69,7 +71,7 @@ foreach ($comments as $comment) {
 
 // RECURSIVE RENDER FUNCTION
 
-function renderComments(?int $parentId, array $groupedComments, int $postId) {
+function renderComments($parentId, array $groupedComments, int $postId) {
 
     if (!isset($groupedComments[$parentId])) {
         return;
@@ -82,16 +84,21 @@ function renderComments(?int $parentId, array $groupedComments, int $postId) {
 
     <div class="comment-top">
 
-        <img
-            src="<?= htmlspecialchars($comment["AvatarUrl"] ?: 'https://i.pravatar.cc/50') ?>"
-            class="comment-avatar"
-        >
+            <a href="../includes/profile.php?user=<?= urlencode($comment["Username"]) ?>" class="profile-link">
+
+                <img src="<?= htmlspecialchars($comment["AvatarUrl"] ?: 'https://i.pravatar.cc/50') ?>" class="comment-avatar">
+
+            </a>
 
         <div>
 
-            <h4>
-                @<?= htmlspecialchars($comment["Username"]) ?>
-            </h4>
+            <a href="../includes/profile.php?user=<?= urlencode($comment["Username"]) ?>" class="profile-link">
+
+                <h4>
+                    @<?= htmlspecialchars($comment["Username"]) ?>
+                </h4>
+
+            </a>
 
         </div>
 
@@ -119,24 +126,19 @@ function renderComments(?int $parentId, array $groupedComments, int $postId) {
 
     <div class="comment-actions">
 
-    <?php if (
-        isset($_SESSION["user"]) &&
-        $_SESSION["user"]["UserId"] == $comment["CommenterId"]
-    ): ?>
+    <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["UserId"] == $comment["CommenterId"]): ?>
 
-        <button type="button" hx-post="../database/delete_comment.php" hx-confirm="Delete this reply?"  hx-vals='{"commentId": "<?= $comment["CommentId"] ?>"}' hx-target="#comments-section"  hx-swap="innerHTML">
-             Delete
-        </button>
+            <button type="button" hx-post="../database/delete_comment.php" hx-confirm="Delete this reply?"  hx-vals='{"commentId": "<?= $comment["CommentId"] ?>"}' hx-target="#comments-section"  hx-swap="innerHTML">
+                Delete
+            </button>
 
-    <?php endif; ?>
+        <?php endif; ?>
 
-</div>
+    </div>
 
 
 
-    <button
-        type="button"
-        onclick="toggleReplyForm(<?= $comment['CommentId'] ?>)">
+    <button type="button" onclick="toggleReplyForm(<?= $comment['CommentId'] ?>)">
 
         Reply
 

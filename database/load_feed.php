@@ -30,35 +30,55 @@ foreach($posts as $post):
 
 
 
-    <!-- CLICKABLE POST -->
+    <!-- POST -->
 
-    <a href="../includes/post.php?postId=<?= $post["PostId"] ?>" class="post-clickable">
+    <div class="post-body">
 
-            <div class="post-top">
 
-        <img
-            src="<?= htmlspecialchars($post["AvatarUrl"] ?: 'https://i.pravatar.cc/50') ?>"
-        >
 
-        <div>
+        <!-- CLICKABLE PROFILE -->
 
-            <h4>
-                @<?= htmlspecialchars($post["Username"]) ?>
-            </h4>
+        <div class="post-top">
 
-            <span>
-                <?= htmlspecialchars($post["CreatedAt"]) ?>
-            </span>
+            <a href="../includes/profile.php?user=<?= urlencode($post["Username"]) ?>" class="profile-link">
+
+                <img src="<?= htmlspecialchars($post["AvatarUrl"] ?: 'https://i.pravatar.cc/50') ?>">
+
+            </a>
+
+
+
+            <div>
+
+                <a href="../includes/profile.php?user=<?= urlencode($post["Username"]) ?>" class="profile-link">
+
+                    <h4>
+                        @<?= htmlspecialchars($post["Username"]) ?>
+                    </h4>
+
+                </a>
+
+                <span>
+                    <?= htmlspecialchars($post["CreatedAt"]) ?>
+                </span>
+
+            </div>
 
         </div>
 
+
+
+        <!-- CLICKABLE POST -->
+
+        <a href="../includes/post.php?postId=<?= $post["PostId"] ?>" class="post-clickable">
+
+            <p class="post-content">
+                <?= htmlspecialchars($post["PostText"]) ?>
+            </p>
+        
+        </a>
+
     </div>
-
-    <p class="post-content">
-        <?= htmlspecialchars($post["PostText"]) ?>
-    </p>
-
-    </a>
 
     <!-- POST ACTIONS -->
 

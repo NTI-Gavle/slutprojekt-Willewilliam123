@@ -15,15 +15,15 @@ if (!isset($_SESSION["user"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=90shjciodpsqI UWI, initial-scale=1.0">
-    <title>Document</title>
+    <title>PurpleSky</title>
     <link rel="stylesheet" href="../public/css/styles.css">
     <?php include "../includes/skeleton/head.php" ?>
 </head>
 
-<body>
+<body class="<?= $_SESSION["user"]["Theme"] ?? 'purple' ?>">
     <div class="app-layout">
 
-    <aside>
+    <aside class="sidebar">
     <?php
     include "nav.php"
     ?>
