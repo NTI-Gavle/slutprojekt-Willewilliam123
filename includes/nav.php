@@ -60,7 +60,7 @@
                 </a>
             </li>
             <li>
-                <a href="profile.php" class="nav-link">
+                <a href="../includes/profile.php?user=<?= urlencode($_SESSION["user"]["Username"]) ?>" class="nav-link">
                     
                     <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5zm0 2c-4.42 0-8 2.69-8 6v1h16v-1c0-3.31-3.58-6-8-6z"/>

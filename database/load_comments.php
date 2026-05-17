@@ -23,12 +23,25 @@ if (!$postId) {
 $sql = "
     SELECT
         Comments.*,
+
         Users.Username,
-        Users.AvatarUrl
+        Users.AvatarUrl,
+
+        ParentUsers.Username AS ParentUsername
+
     FROM Comments
-    JOIN Users
-        ON Comments.CommenterId = Users.UserId
+
+    JOIN Users 
+     ON Comments.CommenterId = Users.UserId
+
+    LEFT JOIN Comments AS ParentComment
+        ON Comments.ParentCommentId = ParentComment.CommentId
+    
+    LEFT JOIN Users AS ParentUsers
+        ON ParentComment.CommenterId = ParentUsers.UserId
+
     WHERE Comments.PostId = ?
+
     ORDER BY Comments.CommentId ASC
 ";
 
@@ -40,12 +53,32 @@ $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-// RENDER COMMENTS
+// ORGANIZE COMMENTS BY PARENT
 
-foreach($comments as $comment):
+$groupedComments = [];
+
+foreach ($comments as $comment) {
+
+    $parentId = $comment["ParentCommentId"];
+
+    $groupedComments[$parentId][] = $comment;
+
+}
+
+
+
+// RECURSIVE RENDER FUNCTION
+
+function renderComments(?int $parentId, array $groupedComments, int $postId) {
+
+    if (!isset($groupedComments[$parentId])) {
+        return;
+    }
+
+    foreach ($groupedComments[$parentId] as $comment):
 ?>
 
-<div class="comment-card">
+<div class="comment-card <?= $comment["ParentCommentId"] ? 'nested-comment' : '' ?>">
 
     <div class="comment-top">
 
@@ -66,13 +99,40 @@ foreach($comments as $comment):
 
 
 
+    <?php if ($comment["ParentUsername"]): ?>
+
+    <p class="replying-to">
+        Replying to @<?= htmlspecialchars($comment["ParentUsername"]) ?>
+    </p>
+
+    <?php endif; ?>
+
+
+
     <p class="comment-content">
         <?= htmlspecialchars($comment["CommentText"]) ?>
     </p>
 
 
 
-    <!-- REPLY BUTTON -->
+    <!-- BUTTON TO DELETE REPLIES -->
+
+    <div class="comment-actions">
+
+    <?php if (
+        isset($_SESSION["user"]) &&
+        $_SESSION["user"]["UserId"] == $comment["CommenterId"]
+    ): ?>
+
+        <button type="button" hx-post="../database/delete_comment.php" hx-confirm="Delete this reply?"  hx-vals='{"commentId": "<?= $comment["CommentId"] ?>"}' hx-target="#comments-section"  hx-swap="innerHTML">
+             Delete
+        </button>
+
+    <?php endif; ?>
+
+</div>
+
+
 
     <button
         type="button"
@@ -84,61 +144,54 @@ foreach($comments as $comment):
 
 
 
-    <!-- HIDDEN REPLY FORM -->
+    <!-- REPLY FORM -->
 
     <div
         id="reply-form-<?= $comment['CommentId'] ?>"
         style="display:none; margin-top:10px;">
 
-        <form
-            hx-post="/Project%20Ultimo/slutprojekt-Willewilliam123/database/create_comment.php"
-            hx-target="#comments-section"
-            hx-swap="innerHTML">
+        <form hx-post="../database/create_comment.php" hx-target="#comments-section" hx-swap="innerHTML">
 
-            <input
-                type="hidden"
-                name="postId"
-                value="<?= $postId ?>">
+            <input type="hidden" name="postId" value="<?= $postId ?>">
 
-            <input
-                type="hidden"
-                name="parentCommentId"
-                value="<?= $comment['CommentId'] ?>">
+            <input type="hidden" name="parentCommentId" value="<?= $comment['CommentId'] ?>">
 
-            <textarea
-                name="commentText"
-                placeholder="Write a reply..."
-                required>
-            </textarea>
+            <textarea name="commentText" maxlength="1000" placeholder="Write a reply..." required></textarea>
 
             <button type="submit">
-                Reply
+                Post
             </button>
 
         </form>
 
     </div>
 
+
+
+    <!-- RENDER COMMENT REPLIES -->
+
+    <div class="nested-replies">
+
+        <?php
+            renderComments(
+                $comment["CommentId"],
+                $groupedComments,
+                $postId
+            );
+        ?>
+
+    </div>
+
 </div>
 
-<?php endforeach; ?>
-
-
-
-<script>
-
-function toggleReplyForm(commentId) {
-
-    const form = document.getElementById(
-        "reply-form-" + commentId
-    );
-
-    if (form.style.display === "none") {
-        form.style.display = "block";
-    } else {
-        form.style.display = "none";
-    }
-
+<?php
+    endforeach;
 }
 
-</script>
+
+
+// START RENDERING FROM TOP-LEVEL COMMENTS
+
+renderComments(null, $groupedComments, $postId);
+
+?>

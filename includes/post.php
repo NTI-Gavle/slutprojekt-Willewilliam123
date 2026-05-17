@@ -44,6 +44,7 @@ if (!$post) {
     <title>Document</title>
     <link rel="stylesheet" href="../public/css/styles.css">
     <?php include "../includes/skeleton/head.php" ?>
+    <script src="../public/js/profile.js"></script>
 </head>
 <body>
         <div class="app-layout">
@@ -86,10 +87,10 @@ if (!$post) {
             name="postId"
                 value="<?= $postId ?>">
 
-            <textarea name="commentText" placeholder="Write a reply..." required></textarea>
+            <textarea name="commentText" maxlength="1000" placeholder="Write a reply..." required></textarea>
 
             <button type="submit">
-                Reply
+                Post
             </button>
 
         </form>

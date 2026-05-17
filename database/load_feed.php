@@ -28,6 +28,10 @@ foreach($posts as $post):
 
 <article class="post-card">
 
+
+
+    <!-- CLICKABLE POST -->
+
     <a href="../includes/post.php?postId=<?= $post["PostId"] ?>" class="post-clickable">
 
             <div class="post-top">
@@ -56,8 +60,14 @@ foreach($posts as $post):
 
     </a>
 
+    <!-- POST ACTIONS -->
+
     <div class="post-actions">
+
+
         
+        <!-- DELETE BUTTON -->
+
         <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["UserId"] == $post["UserId"]): ?>
 
             <button type="button" hx-post="../database/delete_post.php" hx-confirm="Delete this post?" hx-vals='{"postId": "<?= $post["PostId"] ?>"}' hx-target="#discover-feed" hx-swap="innerHTML">
@@ -68,7 +78,16 @@ foreach($posts as $post):
 
         <button>Like</button>
 
-        <button>Reply</button>
+        <a
+            href="../includes/post.php?postId=<?= $post["PostId"] ?>">
+
+            <button type="button">
+
+                Reply
+
+            </button>
+
+        </a>
 
         <button>Repost</button>
 

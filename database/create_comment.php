@@ -11,6 +11,9 @@ if (!isset($_SESSION["user"])) {
 }
 
 $commentText = trim($_POST["commentText"] ?? "");
+if (strlen($commentText) > 1000) {
+    exit();
+}
 $postId = $_POST["postId"] ?? null;
 
 $parentCommentId = $_POST["parentCommentId"] ?? null;

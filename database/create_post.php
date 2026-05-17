@@ -16,6 +16,10 @@ if (!isset($_POST["postText"])) {
 
 $postText = trim($_POST["postText"]);
 
+if (strlen($postText) > 1000) {
+    exit();
+}
+
 if (empty($postText)) {
 
     require "load_feed.php";

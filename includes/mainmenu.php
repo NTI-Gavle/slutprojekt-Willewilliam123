@@ -39,7 +39,7 @@ if (!isset($_SESSION["user"])) {
 
             <form hx-post="../database/create_post.php" hx-target="#discover-feed" hx-swap="innerHTML">
 
-                <textarea name="postText" placeholder="What's happening?" required></textarea>
+                <textarea name="postText" maxlength="1000" placeholder="What's happening?" required></textarea>
 
                 <button type="submit">
                      Post
