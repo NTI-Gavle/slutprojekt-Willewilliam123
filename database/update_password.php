@@ -16,7 +16,7 @@ $userId = $_SESSION["user"]["UserId"];
 
 
 $sql = "
-    SELECT *
+    SELECT *ACAA
     FROM Users
     WHERE UserId = ?
 ";

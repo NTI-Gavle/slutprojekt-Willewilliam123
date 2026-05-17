@@ -14,7 +14,7 @@ if (!isset($_SESSION["user"])) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=90shjciodpsqI UWI, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PurpleSky</title>
     <link rel="stylesheet" href="../public/css/styles.css">
     <?php include "../includes/skeleton/head.php" ?>
